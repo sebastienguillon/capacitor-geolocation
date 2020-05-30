@@ -1,20 +1,68 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Capacitor Geolocation
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="ion-padding">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">Capacitor Geolocation</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div class="message ion-padding">
+    <ion-text color="light">
+      The code and styling of this demo is deliberately kept basic to limit complexity and avoid any confusion.
+    </ion-text>
   </div>
+
+  <ion-button (click)="requestPermission()" expand="block">
+    Request Permission
+  </ion-button>
+
+  <h2>Options</h2>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>enableHighAccuracy ({{ geolocationOptions.enableHighAccuracy }})</ion-label>
+      <ion-toggle (ionChange)="geolocationOptions.enableHighAccuracy = $event.detail.checked" [checked]="geolocationOptions.enableHighAccuracy"></ion-toggle>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-label>timeout ({{ geolocationOptions.timeout }} ms)</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-range (ionChange)="geolocationOptions.timeout = $event.detail.value" min="0" max="60000" step="500" pin="true" [value]="geolocationOptions.timeout"></ion-range>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-label>maximumAge ({{ geolocationOptions.maximumAge }} ms)</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-range (ionChange)="geolocationOptions.maximumAge = $event.detail.value" min="0" max="500000" step="1000" pin="true" [value]="geolocationOptions.maximumAge"></ion-range>
+    </ion-item>
+
+
+  </ion-list>
+
+  <ion-button (click)="getCurrentPos()" expand="block">
+    <ion-spinner *ngIf="waitingForCurrentPosition"></ion-spinner>
+    Get Current position
+  </ion-button>
+
+  <ul *ngIf="currentPos">
+    <li>timestamp: {{ currentPos.timestamp }}</li>
+    <li>coords:
+      <ul>
+        <li>latitude: {{ currentPos.coords.latitude }}</li>
+        <li>longitude: {{ currentPos.coords.longitude }}</li>
+        <li>accuracy: {{ currentPos.coords.accuracy }}</li>
+        <li>altitudeAccuracy: {{ currentPos.coords.altitudeAccuracy }}</li>
+        <li>altitude: {{ currentPos.coords.altitude }}</li>
+        <li>speed: {{ currentPos.coords.speed }}</li>
+        <li>heading: {{ currentPos.coords.heading }}</li>
+      </ul>
+    </li>
+  </ul>
 </ion-content>

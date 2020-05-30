@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Cap Geoloc</string>
+    <string name="title_activity_main">Cap Geoloc</string>
+    <string name="package_name">com.sebastienguillon.cap.geoloc</string>
+    <string name="custom_url_scheme">com.sebastienguillon.cap.geoloc</string>
+</resources>
