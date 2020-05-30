@@ -1,0 +1,7 @@
+{
+  "name": "Cap Geoloc",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
